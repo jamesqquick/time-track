@@ -1,3 +1,5 @@
+/* VARIABLES */
+
 :root {
   --dark-blue: #536386;
   --light-blue: #E3EBF6;
@@ -7,9 +9,11 @@
   --red: #E44F51;
   --orange: #EF8F41;
   --green: #40A13E;
+  --black: #454545;
 
 }
 
+/* GLOBALS */
 
 * {
   margin: 0;
@@ -19,15 +23,31 @@
 
 html {
   font-size: 10px;
+  background-color: var(--light-blue);
+
 }
 
 body {
   font-family: 'Roboto', sans-serif;
+  color: var(--black);
 }
 
 p {
   font-size: 1.8rem;
 }
+
+button{
+  border: none;
+  background-color: transparent;
+}
+
+
+/* UTILITIES */
+.container {
+  padding: 0 2rem;
+}
+
+/* NAVBAR */
 
 #nav {
   background-color: var(--dark-blue);
@@ -35,6 +55,7 @@ p {
   padding: 2rem 1rem;
   display: flex;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 #nav  p {
@@ -44,5 +65,122 @@ p {
 }
 
 .menu-btn{
-  width: 2rem;
+  width: 3rem;
+  text-align: center;
 }
+
+/* BUTTONS */
+
+.btn {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border: none;
+  font-size: 1.8rem;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 3px;
+  transition: background-color 250ms;
+  margin-bottom: 1rem;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--dark-blue);
+}
+
+/* CARD */
+
+.card {
+  width: 100%;
+  box-shadow: 1px 1px 5px 0px var(--light-grey);
+  padding: 2rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card-badge {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-right: 1px solid var(--light-grey);
+  padding-right: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.card-badge__title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--dark-blue)
+}
+
+.card-badge__subtitle{
+  font-size: 1.2rem;
+  color: var(--light-grey);
+  font-weight: 300;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  flex-grow: 1;
+}
+
+.card-content__title {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.card-content__subtitle{
+  font-size: 1.2rem;
+  color: var(--light-grey);
+  font-weight: 300;
+}
+
+.card-menu__btn{
+    font-size: 2.8rem;
+}
+
+/* FORMS */
+
+.form-input {
+
+}
+
+.form-input-with-button{
+  width: 100%;
+  box-shadow: 1px 1px 5px 0px var(--light-grey);
+  padding: 2rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  display: flex;
+  align-items: stretch;
+} 
+
+.form-input-with-button > .form-input {
+  background-color: var(--white);
+  border: none;
+  flex-grow: 1;
+  font-size: 1.2rem;
+}
+
+.form-input-with-button > .form-input:focus{
+  border-bottom: 1px solid var(--dark-grey);
+  outline: none;
+}
+
+.nested-input-btn {
+  font-size: 2.2rem;
+}
+

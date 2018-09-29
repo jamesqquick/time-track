@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
-import Navbar from './components/Navbar.jsx';
-
+import Card from './components/Card';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Team from './components/Team';
+import Game from './components/Game';
+import Teams from './components/Teams';
 class App extends Component {
     render() {
         return (
-            <Navbar title='Time Track' onBack={this.onBack} onMenu={this.onMenu} menuItemText="Add" />
+            <BrowserRouter>
+                <div>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/teams" component={Teams} />
+                    <Route exact path="/teams/:team" component={Team} />
+                    <Route exact path="/game" component={Game} />
+
+                </div>
+
+            </BrowserRouter>
+
+
         );
     }
+
 
     onBack = () => {
         console.log("back pressed");
