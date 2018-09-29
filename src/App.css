@@ -1,0 +1,42 @@
+:root {
+  --dark-blue: #536386;
+  --light-blue: #E3EBF6;
+  --dark-grey: #757E8B;
+  --light-grey: #A6ACB0;
+  --white: #F8FBF9;
+  --red: #E44F51;
+  --orange: #EF8F41;
+  --green: #40A13E;
+
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+#nav {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: 2rem 1rem;
+}
+
+#nav  p {
+  font-size: 2.2rem;
+  text-align: center;
+
+}
