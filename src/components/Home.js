@@ -4,7 +4,6 @@ import Button from './Button';
 export default class Home extends React.Component {
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 <Navbar title='Time Track' />
