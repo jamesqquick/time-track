@@ -7,14 +7,16 @@ import Game from './components/Game';
 import Teams from './components/Teams';
 import base from './firebase';
 import { MyContext } from './Context';
-
+import Login from './components/Login';
+import OnlyLoggedInRoute from './components/OnlyLoggedInRoute';
+import OnlyLoggedOutRoute from './components/OnlyLoggedOutRoute';
 
 //Create a provider component
 class MyProvider extends Component {
-
     state = {
-        teams: {}
-    }
+        teams: {},
+        user: null
+    };
 
     componentDidMount() {
         this.ref = base.syncState('teams', {
@@ -29,35 +31,37 @@ class MyProvider extends Component {
 
     render() {
         return (
-            <MyContext.Provider value={{
-                state: this.state,
-                addTeam: this.addTeam,
-                removeTeam: this.removeTeam,
-                addPlayerToTeam: this.addPlayerToTeam,
-                removePlayerFromTeam: this.removePlayerFromTeam
-            }}>
+            <MyContext.Provider
+                value={{
+                    state: this.state,
+                    addTeam: this.addTeam,
+                    removeTeam: this.removeTeam,
+                    addPlayerToTeam: this.addPlayerToTeam,
+                    removePlayerFromTeam: this.removePlayerFromTeam
+                }}
+            >
                 {this.props.children}
             </MyContext.Provider>
-        )
+        );
     }
 
-    addTeam = (name) => {
+    addTeam = name => {
         const team = { name, players: {} };
         const id = Date.now();
         const teams = { ...this.state.teams };
         teams[id] = team;
         this.setState({
             teams
-        })
-    }
+        });
+    };
 
-    removeTeam = (id) => {
+    removeTeam = id => {
         const teams = { ...this.state.teams };
         teams[id] = null;
         this.setState({
             teams
-        })
-    }
+        });
+    };
 
     addPlayerToTeam = (teamId, playerName) => {
         const teams = { ...this.state.teams };
@@ -70,8 +74,8 @@ class MyProvider extends Component {
         teams[teamId] = team;
         this.setState({
             teams
-        })
-    }
+        });
+    };
 
     removePlayerFromTeam = (teamId, playerId) => {
         const teams = { ...this.state.teams };
@@ -80,27 +84,47 @@ class MyProvider extends Component {
         }
         this.setState({
             teams
-        })
-    }
+        });
+    };
+
+    loggedInHandler = authData => {
+        console.log(authData);
+        //update user in state and navigate to home page
+    };
 }
 class App extends Component {
-
     render() {
         return (
             <MyProvider>
                 <BrowserRouter>
                     <div>
                         <Route exact path="/" component={Home} />
-                        <Route exact path="/teams" component={Teams} />
-                        <Route exact path="/teams/:team" component={Team} />
-                        <Route exact path="/game" component={Game} />
+                        <OnlyLoggedInRoute
+                            exact
+                            path="/teams"
+                            component={Teams}
+                        />
+                        <OnlyLoggedInRoute
+                            exact
+                            path="/teams/:team"
+                            component={Team}
+                        />
+                        <OnlyLoggedInRoute
+                            exact
+                            path="/game"
+                            component={Game}
+                        />
+                        <OnlyLoggedOutRoute
+                            exact
+                            path="/login"
+                            component={Login}
+                            loggedInHandler={this.loggedInHandler}
+                        />
                     </div>
                 </BrowserRouter>
             </MyProvider>
         );
     }
-
-
 }
 
 export default App;
